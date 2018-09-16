@@ -49,19 +49,6 @@ let state = {
       commit('SET_PROGRESS', progress);
       commit('SET_PLAYINGMUSIC', playingMusic);
       commit('SET_PLAYINGMUSICINDEX', playingMusicIndex);
-    },
-    async getMusicById({state, commit}, {id, platform, token}) {
-      const { data } = await Axios.post('http://zlclclc.cn/id', {id, platform, token})
-      const promise = new Promise(function(resolve, reject){
-        if(data.code === 200) {
-          resolve(data)
-          commit('SET_PLAYINGMUSIC', data.song.list) 
-        } else {
-          reject(data)
-          commit('SET_PLAYINGMUSIC', {})
-        }
-      })
-      return promise
     }
   };
   
