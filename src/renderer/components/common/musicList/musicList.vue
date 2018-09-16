@@ -7,7 +7,7 @@
                 :index="index" 
                 :key="item.id"
                 :class="{'bottom-border': index === musicList.length - 1 && !(index % 2 === 0)}"
-                @dblclick="playOrstop(item)"
+                @dblclick="playOrstop(item,index)"
             />
         </div>
     </div>
@@ -44,9 +44,12 @@ export default {
 
         },
         //双击播放或者停止
-        playOrstop (item) {
+        playOrstop (item,index) {
             console.log("双击歌曲")
-            //this.$emit('playOrstop', item)
+            //播放歌曲
+            this.$store.commit('SET_MUSICLIST', this.musicList)
+            this.$store.commit('SET_PLAYINGMUSIC', item)
+            this.$store.commit('SET_PLAYINGMUSICINDEX', index)
         }
     }
 }
